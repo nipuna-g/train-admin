@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - traintracker@localhost" uuid="9239b63b-3a24-4e7e-8bf5-d99a613218d4">
+    <database-info product="MySQL" version="5.5.38-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="traintracker"/>
+    <table name="traintracker_route" schema="" catalog="traintracker" type="TABLE">
+      <column name="route_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="route_departure" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="route_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="route_id"/>
+      <exported-key name="traintracker_route_station_ibfk_1" table="traintracker_route_station" schema="" catalog="traintracker" columns="route"/>
+    </table>
+    <table name="traintracker_route_station" schema="" catalog="traintracker" type="TABLE">
+      <column name="route" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="station_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="route,station_id"/>
+      <foreign-key name="traintracker_route_station_ibfk_1" columns="route" ref-table="traintracker_route" ref-schema="" ref-catalog="traintracker" ref-columns="route_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="traintracker_route_station_ibfk_2" columns="station_id" ref-table="traintracker_station" ref-schema="" ref-catalog="traintracker" ref-columns="station_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="traintracker_station" schema="" catalog="traintracker" type="TABLE">
+      <column name="station_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="station_name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="station_lat" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="station_lon" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="station_prev" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="station_id"/>
+      <foreign-key name="traintracker_station_ibfk_1" columns="station_prev" ref-table="traintracker_station" ref-schema="" ref-catalog="traintracker" ref-columns="station_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="traintracker_route_station_ibfk_2" table="traintracker_route_station" schema="" catalog="traintracker" columns="station_id"/>
+      <exported-key name="traintracker_station_ibfk_1" table="traintracker_station" schema="" catalog="traintracker" columns="station_prev"/>
+    </table>
+    <table name="traintracker_train" schema="" catalog="traintracker" type="TABLE">
+      <column name="train_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="train_name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="train_special_name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="train_lat" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="train_lon" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="train_id"/>
+    </table>
+    <table name="traintracker_user" schema="" catalog="traintracker" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_username" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_password" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_level" sqlType="ENUM" precision="7" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+    </table>
+  </data-source>
+</component>
