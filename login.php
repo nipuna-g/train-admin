@@ -48,7 +48,7 @@
                     </div>
                     <div class="panel-body">
 
-                        <form role="form">
+                        <form role="form" action="php/check-login.php" method="post">
                             <form offset3>
                                 <fieldset>
                                     <div class="form-group">

@@ -5,8 +5,8 @@
         </li>
 
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-map-marker"></i> Station <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo" class="<?php if(basename($_SERVER['SCRIPT_NAME']) != 'add-station.php' && basename($_SERVER['SCRIPT_NAME']) != 'view-station.php'){echo 'collapse'; }else { echo ''; } ?>">
+            <a href="javascript:;" data-toggle="collapse" data-target="#station-dropdown"><i class="fa fa-fw fa-map-marker"></i> Station <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="station-dropdown" class="<?php if(basename($_SERVER['SCRIPT_NAME']) != 'insertStation.php' && basename($_SERVER['SCRIPT_NAME']) != 'view-station.php'){echo 'collapse'; }else { echo ''; } ?>">
                 <li>
                     <a href="add-station.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'add-station.php'){echo 'background:black'; }else { echo ''; } ?>">Add Station</a>
                 </li>
@@ -19,6 +19,38 @@
 
             </ul>
         </li>
+
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#train-dropdown"><i class="fa fa-fw fa-plane"></i> Train <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="train-dropdown" class="<?php if(basename($_SERVER['SCRIPT_NAME']) != 'insertTrain.php' && basename($_SERVER['SCRIPT_NAME']) != 'view-train.php'){echo 'collapse'; }else { echo ''; } ?>">
+                <li>
+                    <a href="add-train.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'add-train.php'){echo 'background:black'; }else { echo ''; } ?>">Add Train</a>
+                </li>
+                <li>
+                    <a href="view-train.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'view-train.php'){echo 'background:black'; }else { echo ''; } ?>">View Trains</a>
+                </li>
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#route-dropdown"><i class="fa fa-fw fa-road"></i> Route <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="route-dropdown" class="<?php if(basename($_SERVER['SCRIPT_NAME']) != 'add-route.php' && basename($_SERVER['SCRIPT_NAME']) != 'view-route.php' && basename($_SERVER['SCRIPT_NAME']) != 'set-route.php'){echo 'collapse'; }else { echo ''; } ?>">
+                <li>
+                    <a href="add-route.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'add-route.php'){echo 'background:black'; }else { echo ''; } ?>">Add Route</a>
+                </li>
+
+                <li>
+                    <a href="view-route.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'view-route.php'){echo 'background:black'; }else { echo ''; } ?>">View Routes</a>
+                </li>
+
+                <li>
+                    <a href="add-route.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'set-route.php'){echo 'background:black'; }else { echo ''; } ?>">Add Route</a>
+                </li>
+
+            </ul>
+        </li>
+
         <li class="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'charts.php'){echo 'active'; }else { echo ''; } ?>">
             <a href="charts.php"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
         </li>

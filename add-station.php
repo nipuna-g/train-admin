@@ -6,6 +6,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
+        var map;
         function initialize() {
             var mapCanvas = document.getElementById('map_canvas');
             var mapOptions = {
@@ -13,7 +14,7 @@
                 zoom: 10,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             }
-            var map = new google.maps.Map(mapCanvas, mapOptions);
+            map = new google.maps.Map(mapCanvas, mapOptions);
 
             google.maps.event.addListener(map, 'click', function (event) {
                 $('#lat').val(event.latLng.lat());
@@ -23,7 +24,10 @@
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
+
+
     </script>
+
 
 </head>
 
@@ -59,7 +63,7 @@
                             <h3 class="panel-title">Station Details</h3>
                         </div>
 
-                        <form class="form-horizontal" action="php/add-station.php" method="post">
+                        <form class="form-horizontal" action="php/insertStation.php" method="post">
                             <fieldset>
                                 <br>
                                 <!-- Text input-->
@@ -67,7 +71,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Station Name</label>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <input id="textinput" name="station_name" type="text" placeholder="placeholder"
+                                        <input id="textinput" name="station_name" type="text" placeholder=""
                                                class="form-control input-md">
                                     </div>
                                 </div>
@@ -75,7 +79,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Latitude</label>
 
                                     <div class="col-md-6">
-                                        <input id="lat" name="station_lat" type="text" placeholder="placeholder"
+                                        <input id="lat" name="station_lat" type="text" placeholder=""
                                                class="form-control input-md">
                                     </div>
                                 </div>
@@ -83,7 +87,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Longitude</label>
 
                                     <div class="col-md-6">
-                                        <input id="lon" name="station_lon" type="text" placeholder="placeholder"
+                                        <input id="lon" name="station_lon" type="text" placeholder=""
                                                class="form-control input-md">
                                     </div>
                                 </div>
@@ -101,7 +105,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-12 text-center">
-                                        <input type="submit" class="btn btn-primary"></input>
+                                        <input type="submit" class="btn btn-primary"/>
                                     </div>
                                 </div>
 
@@ -133,6 +137,33 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var markerPrev;
+    $.get('php/get-station.json.php', function (data) {
+        var obj = jQuery.parseJSON(data);
+        $.each(obj , function (i, station) {
+
+            var myLatlng = new google.maps.LatLng(station.station_lat,station.station_lon);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: station.station_name
+            });
+
+            var contentString = '<div style="width: 250px;color: rgba(3, 0, 74, 0.99);font-size:20px;font-family:Arial, Helvetica, sans-serif;">'+ station.station_name+'<br/>'+station.station_lat+'<br/>'+station.station_lon+'<br/>'+station.station_prev+'</div>';
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.close(map,markerPrev);
+                infowindow.open(map,marker);
+                markerPrev = marker;
+            });
+        });
+    });
+</script>
 
 </body>
 

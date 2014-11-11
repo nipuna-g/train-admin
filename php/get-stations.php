@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nipuna
- * Date: 10/25/14
- * Time: 3:30 PM
- */
-
 include 'connect.php';
 
 //possible way to kill the db if there is an error and print the db error

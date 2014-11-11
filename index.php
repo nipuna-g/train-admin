@@ -1,3 +1,15 @@
+<?php
+/*SESSION checking disabled for debuging
+ *Remove comments in production
+ */
+
+session_start();
+
+if(!isset($_SESSION['login'])){
+    header('Location:login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,11 +82,11 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-comments fa-5x"></i>
+                                        <i class="fa fa-chevron-circle-right fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">26</div>
-                                        <div>New Comments!</div>
+                                        <div>Trains</div>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +108,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
                                         <div class="huge">12</div>
-                                        <div>New Tasks!</div>
+                                        <div>Active Trains</div>
                                     </div>
                                 </div>
                             </div>
@@ -114,11 +126,11 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                        <i class="fa fa-clock-o fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
-                                        <div>New Orders!</div>
+                                        <div class="huge">6</div>
+                                        <div>Inactive Trains</div>
                                     </div>
                                 </div>
                             </div>
@@ -136,11 +148,11 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-xs-3">
-                                        <i class="fa fa-support fa-5x"></i>
+                                        <i class="fa fa-warning fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
+                                        <div class="huge">2</div>
+                                        <div>Alert</div>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +172,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> App Usage</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="morris-area-chart"></div>
