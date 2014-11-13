@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_array($result)) {
     $stationID = $row["station_id"];
     $prevStation = $row["station_prev"];
 
-    echo "<div class=\"checkbox\"><label><input type=\"checkbox\" name=\"$stationID\" value=\"$stationID\" checked>$stationName</label></div>";
+    echo "<div class=\"checkbox station\"><label><input type=\"checkbox\" name=\"$stationID\" value=\"$stationID\" checked>$stationName</label></div>";
 }
 
 $count = 0;
@@ -44,7 +44,7 @@ while ($prevStation != $lowest && $count<50) {
         $stationName = $row["station_name"];
         $stationID = $row["station_id"];
         $prevStation = $row["station_prev"];
-        echo "<div class=\"checkbox\"><label><input type=\"checkbox\" name=\"$stationID\" value=\"$stationID\" checked>$stationName</label></div>";
+        echo "<div class=\"checkbox station\"><label><input type=\"checkbox\" name=\"$stationID\" value=\"$stationID\" checked>$stationName</label></div>";
     }
     $count++;
 }

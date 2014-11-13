@@ -6,20 +6,26 @@ error_reporting(-1);
 session_start();
 include 'connect.php';
 
-$train_name = $_POST['train_name'];
-$train_special = $_POST['train_special'];
+$route_name = $_POST['route_name'];
+$route_id = $_POST['route_id'];
+$route_ari = $_POST['route_ari'];
+$route_dep = $_POST['route_dep'];
 
-$query = "INSERT INTO `traintracker`.`traintracker_train` (`train_id`, `train_name`, `train_special_name`) VALUES (NULL, '$train_name', '$train_special');";
+$route_direction = $_SESSION['routeDirection'];
+
+$query = "INSERT INTO `traintracker`.`traintracker_route` (`route_number`, `route_name`, `route_departure`, `route_arrival`,`route_direction`) VALUES ('$route_id', '$route_name', '$route_dep','$route_ari', '$route_direction');";
 $result = mysqli_query($db, $query);
-$_SESSION['insert-train'] = "Train Added Successfully";
+$_SESSION["route-id"] = mysqli_insert_id($db);
+//echo mysqli_insert_id();
 
-$insertName = "insert-train";
+$insertName = "insert-route";
 if($result) {
     //Save values in SESSION
-    $_SESSION[$insertName] = "Train {$train_name} Added Successfully";
+    $_SESSION["insert-route"] = "Route Added";
 }else{
-    $_SESSION[$insertName] = "Train Adding Failed";
+    $_SESSION["insert-route"] = "Route Adding Failed";
 }
+echo $_SESSION["insert-route"];
 
 //Redirect to payment method
-header('Location:../add-route.php');
+//header('Location:../add-route.php');

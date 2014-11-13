@@ -45,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href="add-route.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'set-route.php'){echo 'background:black'; }else { echo ''; } ?>">Add Route</a>
+                    <a href="set-route.php" style="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'set-route.php'){echo 'background:black'; }else { echo ''; } ?>">Set Route</a>
                 </li>
 
             </ul>

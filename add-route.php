@@ -5,6 +5,7 @@
     <?php include "php/header.php"; ?>
 
     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/moment.js"></script>
 
     <?php
     ini_set('display_errors', 1);
@@ -62,7 +63,7 @@
                 <div class="col-sm-5">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Route Details</h3>
+                            <h3 class="panel-title">Start End Stations</h3>
                         </div>
 
                         <form id="selectStations" class="form-horizontal" action="" method="post">
@@ -134,7 +135,7 @@
                     <h3 class="panel-title">Route Details</h3>
                 </div>
 
-                <form class="form-horizontal" action="php/insertRoute.php" method="post">
+                <form id="submitDetails" class="form-horizontal" action="php/insertRoute.php" method="post">
                     <fieldset>
                         <br>
 
@@ -142,7 +143,7 @@
                             <label class="col-md-2 control-label" for="textinput">Route ID</label>
 
                             <div class="col-md-8">
-                                <input id="lat" name="route_name" type="text" placeholder=""
+                                <input id="route-id" name="route_name" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
@@ -151,7 +152,7 @@
                             <label class="col-md-2 control-label" for="textinput">Route Name</label>
 
                             <div class="col-md-8">
-                                <input id="lat" name="route_id" type="text" placeholder=""
+                                <input id="route-name" name="route_id" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
@@ -160,7 +161,7 @@
                             <label class="col-md-2 control-label" for="textinput">Route Departure</label>
 
                             <div class="col-md-8">
-                                <input id="lat" name="route_departure" type="time" placeholder=""
+                                <input id="route-dep" name="route_departure" type="time" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
@@ -169,7 +170,7 @@
                             <label class="col-md-2 control-label" for="textinput">Route Arrival</label>
 
                             <div class="col-md-8">
-                                <input id="lat" name="route_arrival" type="time" placeholder=""
+                                <input id="route-ari" name="route_arrival" type="time" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
@@ -179,6 +180,7 @@
                                 <input type="submit" class="btn btn-primary"/>
                             </div>
                         </div>
+                        <?php echo $_SESSION['insert-route'] ?>
 
                     </fieldset>
                 </form>
@@ -205,11 +207,60 @@
         var endStation = $("#end-station option:selected").val();
         $.get( "php/get-route-stations.php", { start: startStation, end: endStation } )
             .done(function( data ) {
-                //alert(data);
                 $("#station-list").html(data);
             });
+        event.preventDefault();
+    });
+
+    $('#submitDetails').submit(function(event){
+        var station = new Array();
+        $('.station input:checked').each(function (i,obj) {
+            station.push($(this).val());
+        });
 
         event.preventDefault();
+
+        var routeID = $('#route-id').val();
+        var routeName = $('#route-name').val();
+        var routeDep = $('#route-dep').val();
+        var routeAri = $('#route-ari').val();
+
+        alert(routeAri);
+
+        //Add new route
+        $.post( "php/insertRoute.php", { route_name: routeID, route_id: routeName, route_ari: routeAri, route_dep: routeDep} )
+            .done(function( data ) {
+                //var status = '<?php //echo $_SESSION['insert-route']; ?>';
+                //alert("InsertRoute");
+            });
+        event.preventDefault();
+
+        //TODO: Calculate times for each station
+        var depTime = moment(routeDep,"HH:mm");
+        var ariTime = moment(routeAri,"HH:mm");
+        var duration = moment.duration(ariTime.diff(depTime));
+        var min = duration.asMinutes();
+        var scheduleTime = depTime;
+
+        var timeDiff = min/station.length;
+        //TODO: Add route-stations records for each
+        $('.station input:checked').each(function (i,obj) {
+            scheduleTime = moment(scheduleTime).add(timeDiff, 'minutes');
+            //alert(scheduleTime);
+            var newStation = $(this).val();
+            station.push(newStation);
+
+            var formatedTime = moment(scheduleTime).format('HH:mm:ss');
+            //alert (formatedTime);
+
+            //Add stations to route
+            $.post( "php/insertRouteStation.php", { station_id: newStation, time: formatedTime} )
+                .done(function( data ) {
+                });
+            //INSERT INTO `traintracker`.`traintracker_route_station` (`route`, `station_id`) VALUES ('1', '2')
+
+        });
+
     });
 
 </script>

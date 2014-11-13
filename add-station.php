@@ -19,13 +19,9 @@
             google.maps.event.addListener(map, 'click', function (event) {
                 $('#lat').val(event.latLng.lat());
                 $('#lon').val(event.latLng.lng());
-
             });
         }
-
         google.maps.event.addDomListener(window, 'load', initialize);
-
-
     </script>
 
 
