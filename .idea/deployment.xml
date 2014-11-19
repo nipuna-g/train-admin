@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="train-admin" />
+  <component name="PublishConfigData">
+    <serverData>
+      <paths name="nipuna.me train-admin">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/html/train-admin" local="$PROJECT_DIR$" web="/train-admin" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
 </project>
 

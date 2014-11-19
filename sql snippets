@@ -1,0 +1,2 @@
+//
+SELECT * FROM `traintracker_route_station` WHERE station_id = '1' OR station_id = '21'  group by 'route'

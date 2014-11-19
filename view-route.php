@@ -3,7 +3,6 @@
 
 <head>
     <?php include "php/header.php"; ?>
-
 </head>
 
 <body>
@@ -22,8 +21,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>
-                        Station
-                        <small>View Station</small>
+                        Routes
+                        <small>View Routes</small>
                     </h1>
                 </div>
             </div>
@@ -33,7 +32,7 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Station Details</h3>
+                            <h3 class="panel-title">Routes Details</h3>
                         </div>
 
                         <div id="station-table">
@@ -45,9 +44,9 @@
                                     <th>latitude</th>
                                 </tr>
                                 <tbody>
-                            <?php
-                            include 'php/get-stations.php';
-                            ?>
+                                <?php
+                                include 'php/get-routes.php';
+                                ?>
                                 </tbody>
                             </table>
                         </div>

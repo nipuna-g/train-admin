@@ -13,7 +13,7 @@ $route_dep = $_POST['route_dep'];
 
 $route_direction = $_SESSION['routeDirection'];
 
-$query = "INSERT INTO `traintracker`.`traintracker_route` (`route_number`, `route_name`, `route_departure`, `route_arrival`,`route_direction`) VALUES ('$route_id', '$route_name', '$route_dep','$route_ari', '$route_direction');";
+$query = "INSERT INTO `traintracker`.`traintracker_route` (`route_name`, `route_number`, `route_departure`, `route_arrival`,`route_direction`) VALUES ('$route_id', '$route_name', '$route_dep','$route_ari', '$route_direction');";
 $result = mysqli_query($db, $query);
 $_SESSION["route-id"] = mysqli_insert_id($db);
 //echo mysqli_insert_id();
