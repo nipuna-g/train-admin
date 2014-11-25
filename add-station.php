@@ -67,15 +67,15 @@
                                     <label class="col-md-4 control-label" for="textinput">Station Name</label>
 
                                     <div class="col-sm-6 col-md-6">
-                                        <input id="textinput" name="station_name" type="text" placeholder=""
+                                        <input required id="textinput" name="station_name" type="text" placeholder=""
                                                class="form-control input-md">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Latitude</label>
+                                    <label class="col-md-4 control-label"  for="textinput">Latitude</label>
 
                                     <div class="col-md-6">
-                                        <input id="lat" name="station_lat" type="text" placeholder=""
+                                        <input disabled id="lat" name="station_lat" type="text" placeholder=""
                                                class="form-control input-md">
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Longitude</label>
 
                                     <div class="col-md-6">
-                                        <input id="lon" name="station_lon" type="text" placeholder=""
+                                        <input disabled required id="lon" name="station_lon" type="text" placeholder=""
                                                class="form-control input-md">
                                     </div>
                                 </div>

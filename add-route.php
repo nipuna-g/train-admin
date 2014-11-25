@@ -8,9 +8,6 @@
     <script src="js/moment.js"></script>
 
     <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(-1);
 
     session_start();
     include 'php/connect.php';
@@ -143,7 +140,7 @@
                             <label class="col-md-2 control-label" for="textinput">Route ID</label>
 
                             <div class="col-md-8">
-                                <input id="route-id" name="route_name" type="text" placeholder=""
+                                <input required id="route-id" name="route_name" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>
@@ -152,7 +149,7 @@
                             <label class="col-md-2 control-label" for="textinput">Route Name</label>
 
                             <div class="col-md-8">
-                                <input id="route-name" name="route_id" type="text" placeholder=""
+                                <input required id="route-name" name="route_id" type="text" placeholder=""
                                        class="form-control input-md">
                             </div>
                         </div>

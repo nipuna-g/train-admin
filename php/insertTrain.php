@@ -23,4 +23,4 @@ if($result) {
     $_SESSION[$insertName] = "Train Adding Failed";
 }
 //Redirect to payment method
-header('Location:../insertTrain.php');
+header('Location:../add-train.php');

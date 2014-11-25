@@ -1,10 +1,10 @@
 <?php
-
+session_start();
 //TODO: check if session has logged in
-//if(!isset($_SESSION['login'])){
-//    header('Location:login.php');
-//}
-$_SESSION['login-name'] = "Nipuna Gunathilake";
+if(!isset($_SESSION['login'])){
+    header('Location:login.php');
+}
+//$_SESSION['login-name'] = "Nipuna Gunathilake";
 
 ?>
 
@@ -35,7 +35,7 @@ $_SESSION['login-name'] = "Nipuna Gunathilake";
             </li>
             <li class="divider"></li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                <a href="php/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
             </li>
         </ul>
     </li>

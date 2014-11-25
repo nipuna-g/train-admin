@@ -25,6 +25,7 @@
 
 
     <script type="text/javascript"></script>
+
     <link rel='stylesheet' type='text/css' href='/B1D671CF-E532-4481-99AA-19F420D90332/netdefender/hui/ndhui.css' />
 </head>
 
@@ -32,10 +33,6 @@
    
 
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-           
-            <?php 
-                include "php/header-nav.php";
-            ?>
         </nav>
 
     <div class="container" style="position:absolute; top: calc(50% - 200px); width:100%">
@@ -67,7 +64,7 @@
 -->
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                        <input required="" class="form-control" placeholder="Password" name="password" type="password" value="">
                                     </div>
                                     <div class="checkbox">
                                         <label>
@@ -100,6 +97,15 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/sb-admin-2.js"></script>
+
+        <?php
+        //include "php/header-nav.php";
+
+        if (isset($_GET['login'])) {
+            echo "<script>alert('Invalid username/password combination');</script>";
+        }
+
+        ?>
 
 </body>
 

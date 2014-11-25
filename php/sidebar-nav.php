@@ -51,9 +51,9 @@
             </ul>
         </li>
 
-        <li class="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'charts.php'){echo 'active'; }else { echo ''; } ?>">
-            <a href="charts.php"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-        </li>
+<!--        <li class="--><?php //if(basename($_SERVER['SCRIPT_NAME']) == 'charts.php'){echo 'active'; }else { echo ''; } ?><!--">-->
+<!--            <a href="charts.php"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>-->
+<!--        </li>-->
         <li class="<?php if(basename($_SERVER['SCRIPT_NAME']) == 'time-table.php'){echo 'active'; }else { echo ''; } ?>">
             <a href="time-table.php"><i class="fa fa-fw fa-clock-o "></i> Time Table</a>
         </li>

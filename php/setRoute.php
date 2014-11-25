@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(-1);
@@ -14,7 +15,6 @@ $second_station;
 //function to calculate distance
 function distanceGeoPoints($lat1, $lng1, $lat2, $lng2)
 {
-
     $earthRadius = 3958.75;
 
     $dLat = deg2rad($lat2 - $lat1);
@@ -34,7 +34,7 @@ function distanceGeoPoints($lat1, $lng1, $lat2, $lng2)
     return $geopointDistance;
 }
 
-//get station result by
+//Get station result by inserting database and station ID
 function getStationFromID($stationID, $db)
 {
     $query = "SELECT * FROM `traintracker_station` WHERE `station_id`= {$stationID} LIMIT 0,1";
@@ -43,12 +43,18 @@ function getStationFromID($stationID, $db)
     return $station;
 }
 
+//Get station result by inserting database, routeID, distance and station ID
 function setDistance($db, $distance, $routeID, $stationID)
 {
     $query = "UPDATE `traintracker_route_station` SET `distance` = {$distance} WHERE `station_id` = {$stationID} AND `route` = {$routeID}";
     $result = mysqli_query($db, $query);
 }
 
+/*Loop though the stations in the route and
+1. Calculate and save distance to the table
+2. Save the first station as the current station
+3. Set the second station as next station
+*/
 if ($result = $db->query("SELECT * FROM `traintracker_route_station` WHERE `route`= {$route_id}")) {
 
     if ($result->num_rows) {
@@ -81,7 +87,7 @@ if ($result = $db->query("SELECT * FROM `traintracker_route_station` WHERE `rout
 
                 //For the second station
             }
-            if ($i == 2) {
+            else if ($i == 2) {
                 $second_station = $row['station_id'];
                 //get geo location and save it in loc_prev
                 $station = getStationFromID($row['station_id'], $db);
@@ -92,7 +98,7 @@ if ($result = $db->query("SELECT * FROM `traintracker_route_station` WHERE `rout
                 //calculate distance
                 $distance = distanceGeoPoints($previous_lat, $previous_lon, $current_lat, $current_lon);
 
-                //TODO: save distance to route table
+                //Save distance to route table
                 setDistance($db, $distance, $route_id, $row['station_id']);
 
                 //For the last station
@@ -104,7 +110,6 @@ if ($result = $db->query("SELECT * FROM `traintracker_route_station` WHERE `rout
                 //After the second station
 
                 //set previous location
-
                 $previous_lat = $current_lat;
                 $previous_lon = $current_lon;
 
@@ -116,7 +121,7 @@ if ($result = $db->query("SELECT * FROM `traintracker_route_station` WHERE `rout
                 //calculate distance from last station
                 $distance = distanceGeoPoints($previous_lat, $previous_lon, $current_lat, $current_lon);
 
-                //TODO: save distance to route table
+                //Save distance to route table
                 setDistance($db, $distance, $route_id, $row['station_id']);
             }
             $i++;
@@ -127,6 +132,7 @@ if ($result = $db->query("SELECT * FROM `traintracker_route_station` WHERE `rout
 } else {
     die($db->error);
 }
+
 
 $query = "UPDATE `traintracker_route` SET `route_train`= {$train_id}, `route_station`= {$first_station}, `route_next`= {$second_station} WHERE `route_id`= {$route_id}";
 $result = mysqli_query($db, $query);
