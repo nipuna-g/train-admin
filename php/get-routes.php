@@ -11,12 +11,15 @@ if ($result = $db->query("SELECT * FROM traintracker_route")) {
         while($row = $result->fetch_assoc()) {
             echo "<tr>";
             //echo "<br>". "<pre>".print_r($row)."</pre>";
+            echo "<td>". $row['route_id']. "</td>";
             echo "<td>". $row['route_name']. "</td>";
             echo "<td>". $row['route_number']. "</td>";
             echo "<td>". $row['route_status']. "</td>";
             echo "<td>". $row['route_departure']. "</td>";
             echo "<td>". $row['route_arrival']. "</td>";
             echo "<td>". $row['route_train']. "</td>";
+            echo "<td><button type='button' class='btn btn-warning'  data-toggle='modal' data-target='#deleteModal'> Delete</button></td>";
+
             echo "</tr>";
         }
 

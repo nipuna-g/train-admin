@@ -19,4 +19,33 @@ if ($job) {
         }
 
     }
+
+    if ($job == "delete_station") {
+        $id = $_POST['id'];
+
+        $sql = "DELETE FROM `traintracker_station` WHERE `station_id` = '$id';";
+        echo $sql;
+
+        if (mysqli_query($db, $sql)) {
+            echo "Record delete successfully";
+        } else {
+            echo "Error delete record: " . mysqli_error($db);
+        }
+
+    }
+
+    if ($job == "delete_route") {
+        $id = $_POST['id'];
+
+        $sql = "DELETE FROM `traintracker_route` WHERE `route_id` = '$id';";
+        echo $sql;
+
+        if (mysqli_query($db, $sql)) {
+            echo "Record delete successfully";
+        } else {
+            echo "Error delete record: " . mysqli_error($db);
+        }
+
+    }
+
 }

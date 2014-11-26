@@ -222,13 +222,13 @@
         var routeDep = $('#route-dep').val();
         var routeAri = $('#route-ari').val();
 
-        alert(routeAri);
+        //alert(routeAri);
 
         //Add new route
         $.post( "php/insertRoute.php", { route_name: routeID, route_id: routeName, route_ari: routeAri, route_dep: routeDep} )
             .done(function( data ) {
                 //var status = '<?php //echo $_SESSION['insert-route']; ?>';
-                //alert("InsertRoute");
+                alert("InsertRoute");
             });
         event.preventDefault();
 
